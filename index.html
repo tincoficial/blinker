@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinker</title>
+    <style>
+        /* =========================================
+           1. ESTILOS GENERALES Y FUENTE
+           ========================================= */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fdfbf7; 
+            background-image: radial-gradient(#d3cec4 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-family: 'Segoe Print', 'Comic Sans MS', cursive;
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* =========================================
+           2. ANIMACIONES LENTAS Y FLUIDAS
+           ========================================= */
+        @keyframes respirar {
+            0% { transform: scale(1) translateY(0px) rotate(0deg); }
+            50% { transform: scale(1.02) translateY(-8px) rotate(1deg); }
+            100% { transform: scale(1) translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(-1deg); }
+        }
+
+        .animacion-fluida {
+            animation: respirar 6s ease-in-out infinite;
+        }
+
+        .animacion-flotante {
+            animation: flotar 8s ease-in-out infinite;
+        }
+
+        /* =========================================
+           3. CABECERA Y TÍTULO PRINCIPAL
+           ========================================= */
+        header {
+            text-align: center;
+            padding: 80px 20px 40px 20px;
+            position: relative;
+        }
+
+        /* Decoraciones alrededor del título */
+        .decoracion {
+            position: absolute;
+            font-size: 3em;
+            opacity: 0.7;
+            user-select: none;
+        }
+        .dec-1 { top: 20px; left: 20%; color: #FBC02D; transform: rotate(-15deg); }
+        .dec-2 { top: 40px; right: 20%; color: #2D74B3; transform: rotate(20deg); }
+        .dec-3 { bottom: 10px; left: 30%; color: #43A047; font-size: 2em; }
+        .dec-4 { bottom: 30px; right: 25%; color: #E53935; font-size: 2.5em; transform: rotate(-10deg); }
+
+        h1 {
+            font-size: 6em;
+            margin: 0;
+            letter-spacing: 5px;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        /* Letras de colores tipo crayón */
+        .c-1 { color: #2D74B3; } /* Azul */
+        .c-2 { color: #E53935; } /* Rojo */
+        .c-3 { color: #FBC02D; } /* Amarillo */
+        .c-4 { color: #43A047; } /* Verde */
+        .c-5 { color: #FB8C00; } /* Naranja */
+        .c-6 { color: #8E24AA; } /* Morado */
+        .c-7 { color: #00897B; } /* Turquesa */
+
+        .autor {
+            font-size: 1.8em;
+            color: #555;
+            font-weight: bold;
+            margin-top: -10px;
+        }
+
+        .pregunta-central {
+            font-size: 2.2em;
+            color: #E53935;
+            margin: 40px auto;
+            max-width: 800px;
+            border-top: 3px dashed #777;
+            border-bottom: 3px dashed #777;
+            padding: 20px 0;
+            border-radius: 10px 255px 15px 225px / 255px 15px 225px 15px;
+        }
+
+        /* =========================================
+           4. SECCIÓN LIBRO PRINCIPAL (DESTACADO)
+           ========================================= */
+        .libro-principal {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 4px solid #2c2c2c;
+            border-radius: 3% 97% 4% 96% / 96% 4% 97% 3%;
+            padding: 50px;
+            margin-bottom: 80px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+
+        .portada-principal {
+            flex: 1;
+            height: 400px;
+            background-color: #ffffff;
+            border: 3px dashed #aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 1.5em;
+            border-radius: 10px;
+        }
+
+        .info-principal {
+            flex: 1;
+        }
+
+        .info-principal h2 {
+            font-size: 3em;
+            margin-top: 0;
+            border-bottom: 4px solid #FBC02D;
+            display: inline-block;
+            border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+        }
+
+        /* =========================================
+           5. TARJETAS DE TEMAS
+           ========================================= */
+        .seccion-temas {
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .temas-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .tema-card {
+            width: 160px;
+            padding: 20px;
+            border: 3px solid #2c2c2c;
+            border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+            text-align: center;
+            font-size: 1.3em;
+            box-shadow: 4px 4px 0px #2c2c2c;
+            background-color: transparent;
+        }
+
+        .tema-card:nth-child(1) { border-color: #2D74B3; } /* Soledad */
+        .tema-card:nth-child(2) { border-color: #E53935; } /* Desprecio */
+        .tema-card:nth-child(3) { border-color: #FBC02D; } /* Rechazo */
+        .tema-card:nth-child(4) { border-color: #43A047; } /* Traición */
+        .tema-card:nth-child(5) { border-color: #FB8C00; } /* Envidia */
+
+        /* =========================================
+           6. COLECCIÓN DE 12 VERSIONES
+           ========================================= */
+        .seccion-coleccion {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 40px;
+            border: 3px dashed #777;
+            border-radius: 2% 95% 3% 90% / 95% 4% 92% 5%;
+            margin-bottom: 80px;
+        }
+
+        .descargas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .libro-item {
+            border: 3px solid #333;
+            padding: 20px;
+            text-align: center;
+            border-radius: 2% 98% 4% 95% / 96% 3% 92% 5%;
+            background-color: #fff;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.15);
+            transition: transform 0.4s ease;
+        }
+
+        .libro-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portada-placeholder {
+    width: 100%;
+    /* Establecemos la proporción exacta 896/1200, que equivale a un aspect-ratio de 0.7466 (o 896:1200) */
+    aspect-ratio: 896 / 1200; 
+    background-color: #fafafa;
+    border: 2px dashed #aaa;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    border-radius: 5px;
+    font-size: 1.2em;
+    overflow: hidden; /* Esto asegura que la imagen no se salga de las esquinas redondeadas */
+}
+
+/* Aseguramos que la etiqueta <img> dentro del placeholder cubra todo el espacio sin deformarse */
+.portada-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 'cover' recorta ligeramente para llenar el espacio, o puedes usar 'contain' si prefieres que se vea completa con bordes */
+}
+
+
+
+        /* =========================================
+           7. BOTONES
+           ========================================= */
+        .btn-descarga {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #43A047;
+            color: white;
+            text-decoration: none;
+            font-size: 1.4em;
+            border: 3px solid #2c2c2c;
+            border-radius: 25px 5px 25px 5px / 5px 25px 5px 25px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #2c2c2c;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn-descarga:hover {
+            background-color: #388E3C;
+            transform: scale(1.05);
+            box-shadow: 6px 6px 0px #2c2c2c;
+        }
+
+        /* Botón secundario para los 12 libros */
+        .btn-pequeno {
+            padding: 8px 20px;
+            font-size: 1.1em;
+            background-color: #2D74B3;
+        }
+        .btn-pequeno:hover {
+            background-color: #1976D2;
+        }
+
+
+        .btn-inhabilitado {
+            background-color: #ccc !important;
+            color: #666 !important;
+            cursor: not-allowed !important;
+            border-color: #999 !important;
+        }
+        .btn-inhabilitado:hover {
+            background-color: #ccc !important;
+            color: #666 !important;
+            cursor: not-allowed !important;
+            border-color: #999 !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+    
+
+        /* =========================================
+           8. PIE DE PÁGINA
+           ========================================= */
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            border-top: 3px dashed #ccc;
+            color: #555;
+        }
+
+        /* Adaptación a celulares */
+        @media (max-width: 768px) {
+            .libro-principal {
+                flex-direction: column;
+                padding: 30px;
+            }
+            .portada-principal {
+                width: 100%;
+            }
+            h1 { font-size: 4em; }
+            .pregunta-central { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <header class="animacion-fluida">
+        <div class="decoracion dec-1">☼</div>
+        <div class="decoracion dec-2">★</div>
+        <div class="decoracion dec-3">〰</div>
+        <div class="decoracion dec-4">♡</div>
+        
+        <h1>
+            <span class="c-1">B</span><span class="c-2">L</span><span class="c-3">I</span><span class="c-4">N</span><span class="c-5">K</span><span class="c-6">E</span><span class="c-7">R</span>
+        </h1>
+        <p class="autor">Escrito e Ilustrado por Oscar E. Cortez</p>
+        
+        <div class="pregunta-central animacion-flotante">
+            "¿Qué pasa cuando intentas existir y nadie te presta atención?"
+        </div>
+    </header>
+
+
+    <section class="seccion-temas">
+        <h2 style="font-size: 2.5em; border-bottom: 3px solid #E53935; display: inline-block; border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;">Esto fue lo que encontró Blinker al mostrar su talento pensando en ser el mejor en la Red:</h2>
+        <div class="temas-grid">
+            <div class="tema-card animacion-flotante" style="animation-delay: 0s;"><strong>Soledad</strong></div>
+            <div class="tema-card animacion-flotante" style="animation-delay: 1.5s;"><strong>Burlas</strong></div>
+            <div class="tema-card animacion-flotante" style="animation-delay: 3s;"><strong>Rechazo</strong></div>
+            <div class="tema-card animacion-flotante" style="animation-delay: 4.5s;"><strong>Odio</strong></div>
+            <div class="tema-card animacion-flotante" style="animation-delay: 6s;"><strong>Envidia</strong></div>
+        </div>
+    </section>
+
+        <section class="seccion-temas">
+        <h2 style="font-size: 2.5em; border-bottom: 3px solid #E53935; display: inline-block; border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;">Y esto fue lo que encontró al ayudar a los demás compartiendo algo valioso:</h2>
+        <div class="temas-grid">
+            <div class="tema-card animacion-flotante" style="animation-delay: 0s;"><strong>Amigos</strong></div>
+            <div class="tema-card animacion-flotante" style="animation-delay: 1.5s;"><strong>Sonrisas</strong></div>
+            <div class="tema-card animacion-flotante" style="animation-delay: 3s;"><strong>Paz</strong></div>
+            <div class="tema-card animacion-flotante" style="animation-delay: 4.5s;"><strong>Historias</strong></div>
+            <div class="tema-card animacion-flotante" style="animation-delay: 6s;"><strong>Apoyo</strong></div>
+        </div>
+    </section>
+
+    <section class="libro-principal animacion-fluida">
+        <div class="portada-principal">
+            <img src="/images/original.png" alt="Portada del Libro Principal" class="img-portada" style="max-width: 100%; max-height: 100%; border-radius: 10px;">
+        </div>
+        <div class="info-principal">
+            <h2>Libro Principal</h2>
+            <p style="font-size: 1.3em;">
+               Terminado el 06 de junio de 2026. Esta historia nació de un sueño. Es una aventura sobre lo que cuesta ser uno mismo en un mundo lleno de ruido.
+            </p>
+            <a href="/documents/Blinker-Oscar-Cortez.pdf" class="btn-descarga" download>Descargar Libro Principal</a>
+        </div>
+    </section>
+
+    
+<section class="seccion-coleccion">
+    <h2 style="font-size: 2.5em; text-align: center; margin-top: 0;">LIBROS ILUSTRADOS</h2>
+    <p style="text-align: center; font-size: 1.3em;">Ahora puedes disfrutar el libro en su versión ilustrada dividido en sus doce capítulos</p>
+    
+    <div class="descargas-grid" id="contenedor-libros"></div>
+</section>
+
+<footer>
+    <p>Oscar E. Cortez © 2026. <br>Para todos aquellos que alguna vez se sintieron como Blinker :D</p>
+</footer>
+
+</div>
+
+<script>
+    const contenedorLibros = document.getElementById('contenedor-libros');
+
+    // Define aquí una lista con los números de los capítulos que SÍ has terminado.
+    // (Por ejemplo, si solo tienes listos del 1 al 5, coloca [1, 2, 3, 4, 5]).
+    const capitulosTerminados = [1]; 
+
+    for (let i = 1; i <= 12; i++) {
+        const libroItem = document.createElement('div');
+        libroItem.className = 'libro-item animacion-flotante';
+        libroItem.style.animationDelay = `${i * 0.1}s`; 
+        
+        const imagenSrc = `/images/capitulo-${i}.png`;
+        const archivoPdf = `/documents/capitulo-${i}.pdf`;
+        
+        // Verificamos si este capítulo está en la lista de terminados
+        const estaTerminado = capitulosTerminados.includes(i);
+        
+        // Configuramos el botón según el estado
+        let botonHTML = '';
+        if (estaTerminado) {
+            // Si está terminado, lleva el enlace normal y el atributo download
+            botonHTML = `<a href="${archivoPdf}" class="btn-descarga btn-pequeno" download>Descargar</a>`;
+        } else {
+            // Si no está terminado, deshabilitamos el enlace visualmente y agregamos un aviso al hacer clic
+            botonHTML = `<a href="#" class="btn-descarga btn-pequeno btn-inhabilitado" onclick="mostrarAviso(event, ${i})">Descargar</a>`;
+        }
+
+        libroItem.innerHTML = `
+            <div class="portada-placeholder">
+                <img src="${imagenSrc}" alt="Capítulo ${i} ilustrado">
+            </div>
+            <h3 style="margin: 10px 0;">Capítulo ${i}</h3>
+            ${botonHTML}
+        `;
+        
+        contenedorLibros.appendChild(libroItem);
+    }
+
+    // Función que se ejecuta si intentan descargar un capítulo no terminado
+    function mostrarAviso(event, numeroCapitulo) {
+        event.preventDefault(); // Evita que la página intente recargar o navegar a '#'
+    }
+</script>
+</body>
+</html>
