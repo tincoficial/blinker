@@ -356,14 +356,14 @@
 
     <section class="libro-principal animacion-fluida">
         <div class="portada-principal">
-            <img src="/images/original.png" alt="Portada del Libro Principal" class="img-portada" style="max-width: 100%; max-height: 100%; border-radius: 10px;">
+            <img src="images/original.png" alt="Portada del Libro Principal" class="img-portada" style="max-width: 100%; max-height: 100%; border-radius: 10px;">
         </div>
         <div class="info-principal">
             <h2>Libro Principal</h2>
             <p style="font-size: 1.3em;">
                Terminado el 06 de junio de 2026. Esta historia nació de un sueño. Es una aventura sobre lo que cuesta ser uno mismo en un mundo lleno de ruido.
             </p>
-            <a href="/documents/Blinker-Oscar-Cortez.pdf" class="btn-descarga" download>Descargar Libro Principal</a>
+            <a href="documents/Blinker-Oscar-Cortez.pdf" class="btn-descarga" download>Descargar Libro Principal</a>
         </div>
     </section>
 
@@ -393,8 +393,8 @@
         libroItem.className = 'libro-item animacion-flotante';
         libroItem.style.animationDelay = `${i * 0.1}s`; 
         
-        const imagenSrc = `/images/capitulo-${i}.png`;
-        const archivoPdf = `/documents/capitulo-${i}.pdf`;
+        const imagenSrc = `images/capitulo-${i}.png`;
+        const archivoPdf = `documents/capitulo-${i}.pdf`;
         
         // Verificamos si este capítulo está en la lista de terminados
         const estaTerminado = capitulosTerminados.includes(i);
