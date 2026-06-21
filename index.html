@@ -6,7 +6,19 @@
     <title>Blinker</title>
     <style>
         /* =========================================
-           1. ESTILOS GENERALES Y FUENTES 
+       0. IMPORTACIÓN DE LA FUENTE LOCAL
+       ========================================= */
+        @font-face {
+            font-family: 'MiSegoePrint';
+            /* Si el archivo está en la misma carpeta que el HTML, usa 'segoepr.ttf' */
+            /* Si creaste una carpeta para fuentes, usa '/fuentes/segoepr.ttf' */
+            src: url('segoepr.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        /* =========================================
+           1. ESTILOS GENERALES Y FUENTE
            ========================================= */
         body {
             margin: 0;
@@ -14,17 +26,10 @@
             background-color: #fdfbf7; 
             background-image: radial-gradient(#d3cec4 1px, transparent 1px);
             background-size: 20px 20px;
-            font-family: 'Segoe Print', 'sans-serif';
-            font-style: italic;
+            font-family: 'MiSegoePrint', Arial, sans-serif !important;
             color: #2c2c2c;
             line-height: 1.6;
             overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
         }
 
         /* =========================================
